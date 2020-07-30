@@ -13,10 +13,11 @@ class ChungwaSeeder extends Seeder
     {
         \Illuminate\Support\Facades\DB::table('chungwas')->insert([
             [
-                'name' => 'Jacob',
+                'name' => 'Mukulu',
             ],
             [
-                'name' => 'Jbae'
-            ]]);
+                'name' => 'kwa njenga'
+            ],
+        ]);
     }
 }

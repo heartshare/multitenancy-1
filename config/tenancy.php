@@ -19,7 +19,7 @@ return [
      * Only relevant if you're using the domain or subdomain identification middleware.
      */
     'central_domains' => [
-        'tenanttest.io', // Add the ones that you use. I use this one with Laravel Valet.
+        'tenancy-test.io', // Add the ones that you use. I use this one with Laravel Valet.
     ],
 
     /*'central_domains' => [

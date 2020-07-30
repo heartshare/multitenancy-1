@@ -13,9 +13,12 @@ class TenantTestController extends Controller
     {
 //        dd($request);
         $tenant1 = Tenant::create(['id' => $request->name]);
+        $id=$tenant1->id;
         $tenant1->domains()->create(['domain' => $request->name.'.localhost']);
 
-        Artisan::call('tenants:seed');
+        Artisan::call('tenants:seed', [
+            '--tenants' => [$tenant1->id]
+        ]);
         return back()->with('success','created successfully');
     }
 }
