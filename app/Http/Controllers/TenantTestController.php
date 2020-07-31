@@ -18,7 +18,6 @@ class TenantTestController extends Controller
         Artisan::call('tenants:seed', [
             '--tenants' => [$tenant1->id]
         ]);
-        Artisan::call('passport:keys');
         return back()->with('success','created successfully');
     }
 }

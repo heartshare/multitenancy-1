@@ -2,34 +2,74 @@
 
 namespace App\Http\Controllers;
 
+use App\Chungwa;
 use App\Tenant;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Stancl\Tenancy\Database\Models\Domain;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    public function createUser(Request $request){
+    public function createUser(Request $request)
+    {
         //dd();
-        $domain=Domain::firstWhere('domain',$request->domain);
-        if(is_null($domain)){
-            return response()->json(['message'=>'domain not found!'],Response::HTTP_UNPROCESSABLE_ENTITY);
+        $domain = Domain::firstWhere('domain', $request->domain);
+        if (is_null($domain)) {
+            return response()->json(['message' => 'domain not found!'], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         $tenant = Tenant::find($domain->tenant_id);
         tenancy()->initialize($tenant);
         try {
-            $data=[
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'password'=>bcrypt($request->password),
+            $data = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
             ];
-            User::create($data);
-            return response()->json(['message'=>'User created successfully'],Response::HTTP_OK);
+            $user = User::create($data);
+            return response()->json(['message' => 'User created successfully'], Response::HTTP_OK);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => $exception->getMessage()], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-       catch (\Exception $exception){
-           return response()->json(['message'=>$exception->getMessage()],Response::HTTP_UNPROCESSABLE_ENTITY);
-       }
+
+    }
+
+    public function loginUser(Request $request)
+    {
+        $domain = Domain::firstWhere('domain', $request->domain);
+        if (is_null($domain)) {
+            return response()->json(['message' => 'domain not found!'], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        $tenant = Tenant::find($domain->tenant_id);
+        tenancy()->initialize($tenant);
+        $email = $request->email;
+        $password = $request->password;
+        $user = User::firstWhere('email', $email);
+        if (is_null($user)) {
+            return response()->json(['message' => 'User account does not exist!'], Response::HTTP_UNPROCESSABLE_ENTITY);
+
+        } elseif (!Hash::check($password, $user->password)) {
+            return response()->json(['message' => 'The provided credentials are incorrect!'], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        $result = [
+            'user' => $user,
+            'domain' => $domain,
+            'accessToken' => $user->createToken('oriems-sacco')->plainTextToken,
+        ];
+        return response()->json(['message' => 'Success','result'=>$result], Response::HTTP_OK);
+    }
+
+    public function getOranges(Request $request)
+    {
+        $domain = Domain::firstWhere('domain', $request->domain);
+        if (is_null($domain)) {
+            return response()->json(['message' => 'domain not found!'], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        $tenant = Tenant::find($domain->tenant_id);
+        tenancy()->initialize($tenant);
+        $oranges = Chungwa::all();
+        return response()->json(['oranges' => $oranges, 'message' => 'Success'], Response::HTTP_OK);
 
     }
 }
