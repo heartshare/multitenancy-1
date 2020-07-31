@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/auth/login','UserController@loginUser');
+Route::get('/oranges','UserController@getOranges')->middleware('auth:api');
+Route::post('/create-user','UserController@createUser');
