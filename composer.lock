@@ -2092,16 +2092,16 @@
         },
         {
             "name": "stancl/tenancy",
-            "version": "v3.1.4",
+            "version": "v3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stancl/tenancy.git",
-                "reference": "520fa96d8fff4c33b55d47c8fc0e202b07150168"
+                "reference": "a002f59420d68190ffbaf6791049fe496b07ec5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stancl/tenancy/zipball/520fa96d8fff4c33b55d47c8fc0e202b07150168",
-                "reference": "520fa96d8fff4c33b55d47c8fc0e202b07150168",
+                "url": "https://api.github.com/repos/stancl/tenancy/zipball/a002f59420d68190ffbaf6791049fe496b07ec5d",
+                "reference": "a002f59420d68190ffbaf6791049fe496b07ec5d",
                 "shasum": ""
             },
             "require": {
@@ -2157,7 +2157,7 @@
                 "multi-tenancy",
                 "tenancy"
             ],
-            "time": "2020-07-27T13:02:12+00:00"
+            "time": "2020-08-01T13:07:17+00:00"
         },
         {
             "name": "stancl/virtualcolumn",
@@ -4299,16 +4299,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "2.3.4",
+            "version": "2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "87335b120bc9652e4ee2bf285b7322a785211476"
+                "reference": "58dc4a8df3d41174c677a370b6779b694e4539e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/87335b120bc9652e4ee2bf285b7322a785211476",
-                "reference": "87335b120bc9652e4ee2bf285b7322a785211476",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/58dc4a8df3d41174c677a370b6779b694e4539e7",
+                "reference": "58dc4a8df3d41174c677a370b6779b694e4539e7",
                 "shasum": ""
             },
             "require": {
@@ -4367,7 +4367,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2020-07-27T15:17:39+00:00"
+            "time": "2020-08-01T21:20:01+00:00"
         },
         {
             "name": "filp/whoops",

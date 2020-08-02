@@ -20,4 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/create-user','UserController@createUser');
 Route::post('/auth/login','UserController@loginUser');
-Route::post('/get-oranges','UserController@getOranges')->middleware('auth:sanctum');
+Route::post('/get-oranges/save/{secret}','UserController@saveOranges');
+Route::post('/get-oranges/{secret}','UserController@getOranges');
+

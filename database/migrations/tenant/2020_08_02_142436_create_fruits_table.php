@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChungwasTable extends Migration
+class CreateFruitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateChungwasTable extends Migration
      */
     public function up()
     {
-        Schema::create('chungwas', function (Blueprint $table) {
+        Schema::create('fruits', function (Blueprint $table) {
             $table->id()->generatedAs()->always();
-            $table->string('name');
+            $table->foreignId('user_id');
+            $table->foreignId('chungwa_id');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateChungwasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chungwas');
+        Schema::dropIfExists('fruits');
     }
 }
